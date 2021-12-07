@@ -1,0 +1,257 @@
+scalar ObjectId
+scalar DateTime
+
+enum RestaurantSortByInput {
+  RESTAURANT_ID_DESC
+  _ID_DESC
+  BOROUGH_ASC
+  CUISINE_DESC
+  NAME_ASC
+  RESTAURANT_ID_ASC
+  NEIGHTBORHOOD_ID_DESC
+  _ID_ASC
+  BOROUGH_DESC
+  CUISINE_ASC
+  NAME_DESC
+  NEIGHTBORHOOD_ID_ASC
+}
+
+# Used to find restaurants using patter matching based search
+input RestaurantsPageQueryInput {
+  search: String
+  limit: Int
+}
+
+input RestaurantUpdateInput {
+  _id_unset: Boolean
+  neightborhood_id: String
+  address: RestaurantAddressUpdateInput
+  address_unset: Boolean
+  name: String
+  cuisine: String
+  grades_unset: Boolean
+  restaurant_id_unset: Boolean
+  borough_unset: Boolean
+  cuisine_unset: Boolean
+  borough: String
+  _id: ObjectId
+  restaurant_id: String
+  neightborhood_id_unset: Boolean
+  grades: [RestaurantGradeUpdateInput]
+  name_unset: Boolean
+}
+
+input RestaurantGradeQueryInput {
+  score_gte: Int
+  date_exists: Boolean
+  date: DateTime
+  score_ne: Int
+  grade_in: [String]
+  grade_lte: String
+  OR: [RestaurantGradeQueryInput!]
+  date_lt: DateTime
+  score_gt: Int
+  grade: String
+  date_lte: DateTime
+  score: Int
+  score_nin: [Int]
+  grade_lt: String
+  date_gt: DateTime
+  score_in: [Int]
+  grade_gte: String
+  score_lt: Int
+  grade_nin: [String]
+  score_lte: Int
+  date_nin: [DateTime]
+  date_gte: DateTime
+  score_exists: Boolean
+  grade_exists: Boolean
+  date_ne: DateTime
+  grade_gt: String
+  date_in: [DateTime]
+  grade_ne: String
+  AND: [RestaurantGradeQueryInput!]
+}
+
+input RestaurantInsertInput {
+  created_at: DateTime
+  restaurant_id: String
+  _id: ObjectId
+  grades: [RestaurantGradeInsertInput]
+  name: String
+  neightborhood_id: String
+  address: RestaurantAddressInsertInput
+  borough: String
+  cuisine: String
+}
+
+input RestaurantGradeInsertInput {
+  grade: String
+  score: Int
+  date: DateTime
+}
+
+input RestaurantAddressInsertInput {
+  zipcode: String
+  building: String
+  coord: [Float]
+  street: String
+}
+
+input RestaurantAddressUpdateInput {
+  street_unset: Boolean
+  zipcode: String
+  zipcode_unset: Boolean
+  building: String
+  building_unset: Boolean
+  coord: [Float]
+  coord_unset: Boolean
+  street: String
+}
+
+input RestaurantQueryInput {
+  name_exists: Boolean
+  grades_nin: [RestaurantGradeQueryInput]
+  grades_exists: Boolean
+  borough: String
+  neightborhood_id_gt: String
+  neightborhood_id_exists: Boolean
+  _id_gte: ObjectId
+  name_lt: String
+  neightborhood_id_ne: String
+  borough_exists: Boolean
+  name_gte: String
+  address: RestaurantAddressQueryInput
+  cuisine_exists: Boolean
+  restaurant_id_gte: String
+  name_gt: String
+  neightborhood_id: String
+  AND: [RestaurantQueryInput!]
+  name_lte: String
+  neightborhood_id_gte: String
+  cuisine_gt: String
+  _id_nin: [ObjectId]
+  restaurant_id_in: [String]
+  borough_gt: String
+  _id_in: [ObjectId]
+  _id: ObjectId
+  cuisine_in: [String]
+  _id_gt: ObjectId
+  cuisine_nin: [String]
+  cuisine_gte: String
+  neightborhood_id_lt: String
+  _id_lte: ObjectId
+  neightborhood_id_nin: [String]
+  name_ne: String
+  cuisine: String
+  name_in: [String]
+  _id_ne: ObjectId
+  borough_nin: [String]
+  _id_lt: ObjectId
+  borough_in: [String]
+  cuisine_lte: String
+  name_nin: [String]
+  borough_ne: String
+  cuisine_ne: String
+  borough_gte: String
+  grades: [RestaurantGradeQueryInput]
+  address_exists: Boolean
+  restaurant_id_gt: String
+  borough_lte: String
+  _id_exists: Boolean
+  neightborhood_id_lte: String
+  OR: [RestaurantQueryInput!]
+  restaurant_id_nin: [String]
+  restaurant_id_ne: String
+  grades_in: [RestaurantGradeQueryInput]
+  neightborhood_id_in: [String]
+  restaurant_id_exists: Boolean
+  restaurant_id_lte: String
+  name: String
+  restaurant_id_lt: String
+  borough_lt: String
+  restaurant_id: String
+  cuisine_lt: String
+}
+
+input RestaurantGradeUpdateInput {
+  grade: String
+  grade_unset: Boolean
+  score: Int
+  score_inc: Int
+  score_unset: Boolean
+  date: DateTime
+  date_unset: Boolean
+}
+
+input RestaurantAddressQueryInput {
+  OR: [RestaurantAddressQueryInput!]
+  building_ne: String
+  street_nin: [String]
+  building_nin: [String]
+  street_lte: String
+  street_exists: Boolean
+  building_lte: String
+  zipcode: String
+  AND: [RestaurantAddressQueryInput!]
+  building_exists: Boolean
+  coord: [Float]
+  coord_exists: Boolean
+  zipcode_in: [String]
+  building: String
+  zipcode_lte: String
+  street_ne: String
+  building_lt: String
+  zipcode_gt: String
+  street_in: [String]
+  street_gt: String
+  street: String
+  zipcode_lt: String
+  coord_in: [Float]
+  building_gte: String
+  zipcode_exists: Boolean
+  coord_nin: [Float]
+  zipcode_ne: String
+  zipcode_gte: String
+  building_in: [String]
+  street_gte: String
+  zipcode_nin: [String]
+  street_lt: String
+  building_gt: String
+}
+
+type Restaurant {
+  _id: ObjectId
+  address: RestaurantAddress
+  borough: String
+  cuisine: String
+  grades: [RestaurantGrade]
+  name: String
+  neightborhood_id: String
+  restaurant_id: String
+}
+
+type RestaurantAddress {
+  building: String
+  coord: [Float]
+  street: String
+  zipcode: String
+}
+
+type RestaurantGrade {
+  date: DateTime
+  grade: String
+  score: Int
+}
+
+type Query {
+  restaurant(query: RestaurantQueryInput): Restaurant
+  restaurants(query: RestaurantQueryInput, limit: Int = 100, sortBy: RestaurantSortByInput): [Restaurant]!
+  restaurantsPage(input: RestaurantsPageQueryInput): [Restaurant] # Hint: this query looks like useful.
+}
+
+type Mutation {
+  deleteOneRestaurant(query: RestaurantQueryInput!): Restaurant
+  insertOneRestaurant(data: RestaurantInsertInput!): Restaurant
+  updateOneRestaurant(query: RestaurantQueryInput, set: RestaurantUpdateInput!): Restaurant
+}
