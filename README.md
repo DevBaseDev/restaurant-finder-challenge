@@ -6,7 +6,7 @@ You will need a coulple of APP secrets to run this project, drop a message to ka
 
 You shouldn't work more than 2.5hs on this assignment.
 
-Regarding the GraphQL API, all you need is under [this file](https://github.com/DevBaseDev/restaurant-finder-challenge/blob/main/doc/schema.gql).
+Regarding the GraphQL API, all you need is under [this file](https://github.com/DevBaseDev/restaurant-finder-challenge/blob/master/doc/schema.gql).
 
 We encourge you to show up on this 🌟. Good luck!
 
